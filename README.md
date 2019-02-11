@@ -1,2 +1,0 @@
-# KickstartHomework
-kickstart homework 
