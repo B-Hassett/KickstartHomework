@@ -1,4 +1,4 @@
-# KickStartHomework
+# Kickstart Homework
 # Homework submission for Kickstart Coding Bootcamp
 # To generate page - please use the bash or python scripts included.
 
