@@ -1,36 +1,54 @@
 
-#ABOUT PAGE - CONFIRMED WORKS
-print ("hello world")
-Top_html = open ('templates/top.html').read()
-abMiddle_html = open ('content/about.html').read()
-Bottom_html = open ('templates/bottom.html').read()
+pages = [
 
-about_html = Top_html + abMiddle_html + Bottom_html
-open('docs/about.html', 'w+').write(about_html)
+	{
+	
+		"filename" : "content/about.html" ,
+		"output" : "docs/index.html" ,
+		"title" : "about me" ,	
+	} ,
+	{
+		"filename" : "content/experience.html" ,
+		"output" : "docs/experience.html" ,
+		"title" : "experience" ,	
+	} ,
+	{
+		"filename" : "content/education.html" ,
+		"output" : "docs/education.html" ,
+		"title" : "education" ,	
+	} ,
+	{
+		"filename" : "content/contact.html" ,
+		"output" : "docs/contact.html" ,
+		"title" : "contact" ,	
+	} ,
+]
 
+# OPENING BASE PAGE AND PASSING RESULTS TO THE 2 FUNCTIONS BELOW
+def main():
+    template = open('templates/base.html').read()
+    return template
 
-#EXPERIENCE PAGE
-Top_html = open ('templates/top.html').read()
-exMiddle_html = open ('content/experience.html').read()
-Bottom_html = open ('templates/bottom.html').read()
+#UPDATING FOOTER MESSAGE
+def footer():
+  template = main()
+  footer = 'Look I updated the footer'
+  new_addition = template.replace('{{footer}}', footer)
+  open('templates/base.html', 'w+').write(new_addition)
 
-experience_html = Top_html + exMiddle_html + Bottom_html
-open('docs/experience.html', 'w+').write(experience_html)
-
-
-
-#EDUCATION PAGE
-Top_html = open ('templates/top.html').read()
-edMiddle_html = open ('content/education.html').read()
-Bottom_html = open ('templates/bottom.html').read()
-
-education_html = Top_html + edMiddle_html + Bottom_html
-open('docs/education.html', 'w+').write(education_html)
-
-#CONTACT PAGE
-Top_html = open ('templates/top.html').read()
-coMiddle_html = open ('content/contact.html').read()
-Bottom_html = open ('templates/bottom.html').read()
-
-contact_html = Top_html + coMiddle_html + Bottom_html
-open('docs/contact.html', 'w+').write(contact_html)
+#BUILDING LANDING PAGES
+def build():
+    template = main()
+    for page in pages:
+        filename = page['filename']
+        title = page['title']
+        output = page['output']
+        content = open(filename).read()
+        finished_page = template.replace('{{content}}', content).replace('{{title}}', title)
+        open(output, 'w+').write(finished_page)
+    
+    
+if __name__ == '__main__':
+    footer() 
+    build()
+    
