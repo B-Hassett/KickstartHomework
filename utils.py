@@ -36,10 +36,3 @@ def build():
         finished_page = template.replace('{{content}}', content).replace('{{title}}', title)
         open(output, 'w+').write(finished_page)
     
-
-
-if __name__ == '__main__':
-    create_list()
-    build()
-    
-    
